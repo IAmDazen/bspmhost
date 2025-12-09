@@ -1,9 +1,9 @@
 #!/bin/bash
 if [ ! -f "/usr/share/bspm/config.toml" ]
+then
   if [ "$EUID" -ne 0 ]
     then echo "Please run as root the first time you use BSPM"
     exit
-then
   wget --directory-prefix=/usr/share/bspm/ https://raw.githubusercontent.com/IAmDazen/bspmhost/refs/heads/main/autogen/config.toml
 fi
 repo=$(grep '^repo=' /usr/share/bspm/config.toml | cut -d'=' -f2- | tr -d ' "')
