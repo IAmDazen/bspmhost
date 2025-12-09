@@ -1,5 +1,8 @@
 #!/bin/bash
 if [ ! -f "/usr/share/bspm/config.toml" ]
+  if [ "$EUID" -ne 0 ]
+    then echo "Please run as root the first time you use BSPM"
+    exit
 then
   wget --directory-prefix=/usr/share/bspm/ https://raw.githubusercontent.com/IAmDazen/bspmhost/refs/heads/main/autogen/config.toml
 fi
